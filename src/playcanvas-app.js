@@ -76,7 +76,7 @@ export class PlayCanvasApp {
     if (this._app.xr.supported) {
       const activate = () => {
         if (this._app.xr.isAvailable(pc.XRTYPE_AR)) {
-          this._camera.camera.startXr(pc.XRTYPE_AR, pc.XRSPACE_LOCALFLOOR, {
+          this._camera.camera.startXr(pc.XRTYPE_AR, pc.XRSPACE_VIEWER, {
             callback: (err) => {
               if (err)
                 PlayCanvasApp.message(
