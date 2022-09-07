@@ -23,9 +23,10 @@ export class PlayCanvasApp {
     this._camera = new pc.Entity();
     this._camera.addComponent("camera", {
         clearColor: new pc.Color(0, 0, 0, 0),
-        farClip: 10000,
+        farClip: 10000
     });
-    this._camera.setPosition(0, 0, 3);
+    this._camera.translate(0, 8, 8);
+    this._camera.lookAt(0, 0, 0);
 
     this._app.root.addChild(this._camera);
 
@@ -76,7 +77,7 @@ export class PlayCanvasApp {
     if (this._app.xr.supported) {
       const activate = () => {
         if (this._app.xr.isAvailable(pc.XRTYPE_AR)) {
-          this._camera.camera.startXr(pc.XRTYPE_AR, pc.XRSPACE_VIEWER, {
+          this._camera.camera.startXr(pc.XRTYPE_AR, pc.XRSPACE_LOCALFLOOR, {
             callback: (err) => {
               if (err)
                 PlayCanvasApp.message(
