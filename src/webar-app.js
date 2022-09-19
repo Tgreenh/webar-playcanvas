@@ -90,6 +90,8 @@ export class PlayCanvasApp {
         else {
           PlayCanvasApp.message("Immersive AR is not available");
         }
+
+        console.log(this._app.xr);
       };
 
       this._app.mouse.on("mousedown", () => {
@@ -131,6 +133,14 @@ export class PlayCanvasApp {
         PlayCanvasApp.message(
           "Immersive AR is " + (available ? "available" : "unavailable")
         );
+      });
+
+      this._app.xr.on("update", (xrFrame) => {
+        console.log("XR Update");
+        console.log(xrFrame);
+        console.log(this._app.xr._referenceSpace);
+        const pose  = xrFrame.getViewerPose(this._app.xr._referenceSpace);
+        console.log(pose);
       });
 
       if (!this._app.xr.isAvailable(pc.XRTYPE_AR)) {
